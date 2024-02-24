@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Signup from './pages/SignUp';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
 
 const App: React.FC = () => {
   return (
@@ -9,8 +10,8 @@ const App: React.FC = () => {
       test
       <Routes>
         <Route path='/' element={<>홈</>}/>
-        <Route path='/signin' element={<>로그인</>}/>
-        <Route path='/signup' element={<><Signup/></>}/>
+        <Route path='/signin' element={<><SignIn /></>}/>
+        <Route path='/signup' element={<><SignUp/></>}/>
         <Route path='*' element={<>찾을 수 없는 페이지입니다.</>}/>
       </Routes>
     </div>
