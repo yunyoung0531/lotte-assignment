@@ -68,7 +68,7 @@ const SignIn: React.FC = () => {
                                         required
                                         type="email"
                                         placeholder="이메일을 입력해주세요."
-                                        className='signup-form-len no-outline'
+                                        className='signup-form-len no-outline wide-input-group'
                                         value={email}
                                         onChange={handleEmailChange}
                                     />
@@ -81,7 +81,7 @@ const SignIn: React.FC = () => {
                                             required
                                             type="password"
                                             placeholder='비밀번호을 입력해주세요.'
-                                            className='signup-form-len no-outline'
+                                            className='signup-form-len no-outline wide-input-group'
                                             value={password}
                                             onChange={handlePasswordChange} 
                                         /> 
