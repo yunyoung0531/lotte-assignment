@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 interface UserData {
     username: string;
@@ -11,6 +12,7 @@ interface UserData {
 }
 
 const SignIn: React.FC = () => {
+    let navigate = useNavigate();
     const [validated, setValidated] = useState(false);
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
@@ -62,7 +64,7 @@ const SignIn: React.FC = () => {
                                     />
                                 </Form.Group>
                                 <div style={{ display: 'flex', justifyContent: 'end' }}>
-                                    <Button type="submit" className='signup-btn'>로그인</Button>
+                                    <Button type="submit"  className='signup-btn'>로그인</Button>
                                 </div>
                             </Form>
                         </div>

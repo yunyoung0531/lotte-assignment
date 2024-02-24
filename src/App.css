@@ -21,3 +21,7 @@
     box-shadow: none !important;
     border-color: rgb(222, 222, 222) !important;
 }
+
+.signup-form h2{
+    margin-bottom: 30px;
+}
