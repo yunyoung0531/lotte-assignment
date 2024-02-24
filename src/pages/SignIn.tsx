@@ -14,14 +14,44 @@ interface UserData {
 const SignIn: React.FC = () => {
     let navigate = useNavigate();
     const [validated, setValidated] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const createMockJwtToken = (userData: UserData) => {
+        const header = btoa(unescape(encodeURIComponent(JSON.stringify({ alg: "HS256", typ: "JWT" }))));
+        const payload = btoa(unescape(encodeURIComponent(JSON.stringify(userData))));
+        const signature = "임의의서명";
+        return `${header}.${payload}.${signature}`;
+    };
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        const form = event.currentTarget;
-        if (!form.checkValidity()) {
-            event.stopPropagation();
+    
+        const storedUsers = localStorage.getItem('userInfos');
+        const users = storedUsers ? JSON.parse(storedUsers) : [];
+    
+        const userFound = users.find((user: UserData) => user.email === email && user.password === password);
+    
+        if (userFound) {
+            console.log('로그인 성공');
+            const mockToken = createMockJwtToken(userFound);
+            localStorage.setItem('jwtToken', mockToken);
+            navigate('/');
+        } else {
+            console.log('로그인 실패');
         }
+    
         setValidated(true);
     };
+    
+    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(event.target.value);
+    };
+    
+    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+    };
+    
     
 
     return (
@@ -39,6 +69,8 @@ const SignIn: React.FC = () => {
                                         type="email"
                                         placeholder="이메일을 입력해주세요."
                                         className='signup-form-len no-outline'
+                                        value={email}
+                                        onChange={handleEmailChange}
                                     />
                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 </Form.Group>
@@ -50,6 +82,8 @@ const SignIn: React.FC = () => {
                                             type="password"
                                             placeholder='비밀번호을 입력해주세요.'
                                             className='signup-form-len no-outline'
+                                            value={password}
+                                            onChange={handlePasswordChange} 
                                         /> 
                                         <FontAwesomeIcon icon={faEye} style={{color: "#bdbdbd", marginLeft: '10px', marginBottom: '10px', cursor: 'pointer'}} />                                    
                                     </div>
