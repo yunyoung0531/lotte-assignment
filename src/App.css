@@ -5,7 +5,7 @@
 }
 
 .signup-form-len {
-    width: 350px !important;
+    width: 380px !important;
     margin-bottom: 15px;
 }
 
@@ -22,6 +22,23 @@
     border-color: rgb(222, 222, 222) !important;
 }
 
+.form-select.no-outline {
+    box-shadow: none !important;
+    border-color: rgb(222, 222, 222) !important;
+}
+
+.form-group.no-outline {
+    box-shadow: none !important;
+    border-color: rgb(222, 222, 222) !important;
+}
+
 .signup-form h2{
     margin-bottom: 30px;
+}
+.wide-input-group {
+    height: 50px !important;
+}
+
+.email-input {
+    width: 195px !important;
 }
