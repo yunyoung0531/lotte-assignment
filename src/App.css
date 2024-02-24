@@ -1,0 +1,23 @@
+.signup-form {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-form-len {
+    width: 350px !important;
+    margin-bottom: 15px;
+}
+
+.signup-btn {
+    color: rgb(255, 255, 255) !important;
+    border-color: #da291c !important;
+    background-color: #da291c !important;
+    border-radius: 3px !important;
+    align-items: flex-end;
+}
+
+.form-control.no-outline {
+    box-shadow: none !important;
+    border-color: rgb(222, 222, 222) !important;
+}
