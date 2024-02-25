@@ -62,23 +62,50 @@ const SignUp: React.FC = () => {
     const [customDomain, setCustomDomain] = useState(false); 
     const [emailDomain, setEmailDomain] = useState('');
     
-    const handleDomainChange = (event: React.ChangeEvent<HTMLSelectElement>): void => {
-        let newEmailDomain = event.target.value;
-        if (newEmailDomain === "custom") {
-            setCustomDomain(true);
-            newEmailDomain = '';
-        } else {
-            setCustomDomain(false);
-        }
-        const emailLocalPart = formData.email.split('@')[0];
+    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const newEmailLocalPart = event.target.value;
+        const newCompleteEmail = customDomain ? newEmailLocalPart : `${newEmailLocalPart}@${emailDomain}`;
         setFormData(prevState => ({
             ...prevState,
-            email: `${emailLocalPart}@${newEmailDomain}`
+            email: newCompleteEmail
         }));
-    
-        setEmailDomain(newEmailDomain);
     };
     
+    const handleDomainChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>): void => {
+        const value = event.target.value;
+        const isCustomDomain = value === 'custom';
+        setCustomDomain(isCustomDomain);
+    
+        //드롭다운 목록
+        if (!isCustomDomain) {
+            const newEmailDomain = event.target.value;
+            setEmailDomain(newEmailDomain);
+            const newCompleteEmail = `${formData.email.split('@')[0]}@${newEmailDomain}`;
+            setFormData(prevState => ({
+                ...prevState,
+                email: newCompleteEmail
+            }));
+        } else { //직접 입력 선택할 경우
+            setEmailDomain('');
+            setFormData(prevState => ({
+                ...prevState,
+                email: formData.email.split('@')[0]
+            }));
+        }
+    };
+
+    const handleCustomDomainChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const newEmailDomain = event.target.value;
+        setEmailDomain(newEmailDomain);
+        const newCompleteEmail = `${formData.email.split('@')[0]}@${newEmailDomain}`;
+        setFormData(prevState => ({
+            ...prevState,
+            email: newCompleteEmail
+        }));
+    };
+    
+    
+        
 
 
     return (
@@ -108,7 +135,8 @@ const SignUp: React.FC = () => {
                                             placeholder="이메일을 입력해주세요."
                                             aria-label="Email"
                                             className='signup-form-len no-outline wide-input-group email-input'
-                                            onChange={handleChange}
+                                            value={formData.email.split('@')[0]} // 이메일 로컬 부분만 보여줌
+                                            onChange={handleEmailChange}                                    
                                         />
                                         {(!customDomain || customDomain )&& (
                                             <InputGroup.Text style={{ height: '50px' }}>@</InputGroup.Text>
@@ -135,9 +163,9 @@ const SignUp: React.FC = () => {
                                                 placeholder="직접 입력"
                                                 aria-label="Custom email domain"
                                                 className=' no-outline'
-                                                onChange={(e) => setEmailDomain(e.target.value)}
+                                                onChange={handleCustomDomainChange} 
                                                 value={emailDomain}
-                                                style={{ height: '50px', width: '135px' }}
+                                                style={{ height: '50px', width: '135px' }}  
                                             />
                                         )}
                                     </InputGroup>
