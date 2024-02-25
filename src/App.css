@@ -37,8 +37,14 @@
 }
 .wide-input-group {
     height: 50px !important;
+    margin-bottom: 15px;
 }
 
 .email-input {
     width: 195px !important;
+}
+
+.validation-text {
+    color: #494646 !important;
+    font-size: 13px !important;
 }
