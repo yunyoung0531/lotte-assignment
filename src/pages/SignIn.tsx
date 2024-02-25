@@ -36,6 +36,9 @@ const SignIn: React.FC = () => {
             console.log('로그인 성공');
             const mockToken = createMockJwtToken(userFound);
             localStorage.setItem('jwtToken', mockToken);
+            localStorage.setItem('userName', userFound.username); //사용자 이름 저장 -> 홈에서 보여주기 위함   
+            window.dispatchEvent(new Event('storage'));
+
             navigate('/');
         } else {
             console.log('로그인 실패');

@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
 .signup-form {
     display:flex;
     justify-content: center;
@@ -47,4 +49,27 @@
 .validation-text {
     color: #918b8b !important;
     font-size: 13px !important;
+}
+
+.nav-color {
+    box-shadow: 0 4px 4px 0 rgba(193, 193, 193, 0.2), 0 6px 20px 0 rgba(196, 196, 196, 0.19);
+}
+
+.simple-user-info {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.healthcare-title {
+    font-family: 'Pretendard-Regular', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
