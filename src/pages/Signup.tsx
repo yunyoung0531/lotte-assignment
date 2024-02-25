@@ -18,6 +18,9 @@ const SignUp: React.FC = () => {
     const [emailDomain, setEmailDomain] = useState('');
 
     const [passwordValidationMessage, setPasswordValidationMessage] = useState('');
+    const [usernameValidationMessage, setUsernameValidationMessage] = useState('');
+
+    const [isButtonEnabled, setIsButtonEnabled] = useState(false); 
 
     const [formData, setFormData] = useState<UserData>({
         username: '',
@@ -57,23 +60,26 @@ const SignUp: React.FC = () => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { id, value } = event.target;
-        if (id === 'password') {
-            validatePassword(value);
+        let newFormData = { ...formData, [id]: value };
+    
+        if (id === 'username') {
+            validateUsername(value);
+        }
+    
+        if (id === 'password' || id === 'confirmPassword') {
+            validatePassword(newFormData.password);
+            const passwordsMatch = newFormData.password === newFormData.confirmPassword;
+            setIsButtonEnabled(passwordsMatch && passwordValidationMessage === "안전한 비밀번호입니다." && usernameValidationMessage === "");
         }
     
         if (id === 'email') {
             const completeEmail = emailDomain ? `${value}@${emailDomain}` : value;
-            setFormData(prevState => ({
-                ...prevState,
-                [id]: completeEmail
-            }));
-        } else {
-            setFormData(prevState => ({
-                ...prevState,
-                [id]: value
-            }));
+            newFormData = { ...newFormData, [id]: completeEmail };
         }
+    
+        setFormData(newFormData);
     };
+    
     
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const newEmailLocalPart = event.target.value;
@@ -115,6 +121,17 @@ const SignUp: React.FC = () => {
         }));
     };
     
+    const validateUsername = (username: string) => {
+        const regex = /^[a-zA-Z가-힣]+$/; 
+        if (!regex.test(username)) {
+            setUsernameValidationMessage("문자만 입력 가능합니다.");
+            setIsButtonEnabled(false); 
+        } else {
+            setUsernameValidationMessage("");
+            setIsButtonEnabled(passwordValidationMessage === "안전한 비밀번호입니다." && username.length > 0);
+        }
+    };
+    
     
     const validatePassword = (password: string) => {
         const lengthRegex = /.{8,}/;
@@ -125,26 +142,34 @@ const SignUp: React.FC = () => {
     
         if (!lengthRegex.test(password)) {
             setPasswordValidationMessage("8자 이상의 비밀번호를 입력해주세요.");
+            setIsButtonEnabled(false); 
             return;
         }
         if (!uppercaseRegex.test(password)) {
             setPasswordValidationMessage("영어 대문자를 포함시켜주세요.");
+            setIsButtonEnabled(false); 
             return;
         }
         if (!lowercaseRegex.test(password)) {
             setPasswordValidationMessage("영어 소문자를 포함시켜주세요.");
+            setIsButtonEnabled(false); 
             return;
         }
         if (!numberRegex.test(password)) {
             setPasswordValidationMessage("숫자를 포함시켜주세요.");
+            setIsButtonEnabled(false); 
             return;
         }
         if (!specialCharRegex.test(password)) {
             setPasswordValidationMessage("특수 문자를 포함시켜주세요.");
+            setIsButtonEnabled(false); 
             return;
         }
-        // 모든 조건 만족
-        setPasswordValidationMessage("안전한 비밀번호입니다.");
+        
+        else {
+            setPasswordValidationMessage("안전한 비밀번호입니다.");
+            setIsButtonEnabled(usernameValidationMessage === "" && formData.username.length > 0);
+        }
     };
     
 
@@ -159,18 +184,21 @@ const SignUp: React.FC = () => {
                             <Form noValidate validated={validated} onSubmit={handleSubmit}>
                                 <Form.Group controlId="username" >
                                     <Form.Label>이름</Form.Label>
-                                    <Form.Control
+                                    <Form.Control   
                                         required
                                         type="text"
                                         placeholder="이름을 입력해주세요."
                                         className='signup-form-len no-outline wide-input-group'
                                         onChange={handleChange}
-                                        // isInvalid={!formData.username}
+                                        style={{marginBottom: '0px'}}
                                     />
+                                    <Form.Text className="validation-text">
+                                        {usernameValidationMessage}
+                                    </Form.Text>
                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group controlId="email">
-                                    <Form.Label>이메일</Form.Label>
+                                    <Form.Label style={{ marginTop: '10px' }}>이메일</Form.Label>
                                     <InputGroup>
                                         <FormControl
                                             type="text"
@@ -254,7 +282,11 @@ const SignUp: React.FC = () => {
                                     />
                                 </Form.Group>
                                 <div style={{ display: 'flex', justifyContent: 'end' }}>
-                                    <Button type="submit" className='signup-btn'>회원가입</Button>
+                                    <Button 
+                                        type="submit"
+                                        className={`signup-btn ${isButtonEnabled ? 'btn-danger' : 'btn-secondary'}`} 
+                                        disabled={!isButtonEnabled} 
+                                    >회원가입</Button>
                                 </div>
                             </Form>
                         </div>
