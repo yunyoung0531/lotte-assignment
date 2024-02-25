@@ -7,15 +7,23 @@ interface UserData {
     username: string;
     email: string;
     password: string;
+    confirmPassword: string;
 }
 
 const SignUp: React.FC = () => {
     let navigate = useNavigate();
     const [validated, setValidated] = useState(false);
+
+    const [customDomain, setCustomDomain] = useState(false); 
+    const [emailDomain, setEmailDomain] = useState('');
+
+    const [passwordValidationMessage, setPasswordValidationMessage] = useState('');
+
     const [formData, setFormData] = useState<UserData>({
         username: '',
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
     });
     
     const handleSignUpSuccess = (userData: UserData) => {
@@ -33,6 +41,11 @@ const SignUp: React.FC = () => {
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         const form = event.currentTarget;
+        if (formData.password !== formData.confirmPassword) { 
+            alert('비밀번호를 다시 확인해주세요');
+            return;
+        }
+    
         if (!form.checkValidity()) {
             event.stopPropagation();
         } 
@@ -44,6 +57,9 @@ const SignUp: React.FC = () => {
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { id, value } = event.target;
+        if (id === 'password') {
+            validatePassword(value);
+        }
     
         if (id === 'email') {
             const completeEmail = emailDomain ? `${value}@${emailDomain}` : value;
@@ -58,9 +74,6 @@ const SignUp: React.FC = () => {
             }));
         }
     };
-
-    const [customDomain, setCustomDomain] = useState(false); 
-    const [emailDomain, setEmailDomain] = useState('');
     
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const newEmailLocalPart = event.target.value;
@@ -76,16 +89,14 @@ const SignUp: React.FC = () => {
         const isCustomDomain = value === 'custom';
         setCustomDomain(isCustomDomain);
     
-        //드롭다운 목록
         if (!isCustomDomain) {
-            const newEmailDomain = event.target.value;
-            setEmailDomain(newEmailDomain);
-            const newCompleteEmail = `${formData.email.split('@')[0]}@${newEmailDomain}`;
+            setEmailDomain(value);
+            const newCompleteEmail = `${formData.email.split('@')[0]}@${value}`;
             setFormData(prevState => ({
                 ...prevState,
                 email: newCompleteEmail
             }));
-        } else { //직접 입력 선택할 경우
+        } else {
             setEmailDomain('');
             setFormData(prevState => ({
                 ...prevState,
@@ -93,7 +104,7 @@ const SignUp: React.FC = () => {
             }));
         }
     };
-
+    
     const handleCustomDomainChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const newEmailDomain = event.target.value;
         setEmailDomain(newEmailDomain);
@@ -105,7 +116,38 @@ const SignUp: React.FC = () => {
     };
     
     
-        
+    const validatePassword = (password: string) => {
+        const lengthRegex = /.{8,}/;
+        const uppercaseRegex = /[A-Z]/;
+        const lowercaseRegex = /[a-z]/;
+        const numberRegex = /\d/;
+        const specialCharRegex = /[@$!%*?&]/;
+    
+        if (!lengthRegex.test(password)) {
+            setPasswordValidationMessage("8자 이상의 비밀번호를 입력해주세요.");
+            return;
+        }
+        if (!uppercaseRegex.test(password)) {
+            setPasswordValidationMessage("영어 대문자를 포함시켜주세요.");
+            return;
+        }
+        if (!lowercaseRegex.test(password)) {
+            setPasswordValidationMessage("영어 소문자를 포함시켜주세요.");
+            return;
+        }
+        if (!numberRegex.test(password)) {
+            setPasswordValidationMessage("숫자를 포함시켜주세요.");
+            return;
+        }
+        if (!specialCharRegex.test(password)) {
+            setPasswordValidationMessage("특수 문자를 포함시켜주세요.");
+            return;
+        }
+        // 모든 조건 만족
+        setPasswordValidationMessage("안전한 비밀번호입니다.");
+    };
+    
+
 
 
     return (
@@ -183,11 +225,16 @@ const SignUp: React.FC = () => {
                                         placeholder="영문대소문자·특수문자·숫자를 조합하여 8자 이상"
                                         className='signup-form-len no-outline wide-input-group'
                                         onChange={handleChange}
+                                        style={{marginBottom: '0px'}}
                                     />
+                                    <Form.Text className="validation-text">
+                                        {passwordValidationMessage}
+                                    </Form.Text>
+
                                     <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                                 </Form.Group>
-                                <Form.Group controlId="password">
-                                    <Form.Label>비밀번호 확인</Form.Label>
+                                <Form.Group controlId="confirmPassword">
+                                    <Form.Label style={{ marginTop: '5px' }}>비밀번호 확인</Form.Label>
                                     <Form.Control
                                         required
                                         type="password"
