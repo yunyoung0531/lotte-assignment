@@ -257,7 +257,7 @@ const SignUp: React.FC = () => {
                                         {passwordValidationMessage}
                                     </Form.Text>
 
-                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    <Form.Control.Feedback>good!</Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group controlId="confirmPassword">
                                     <Form.Label style={{ marginTop: '5px' }}>비밀번호 확인</Form.Label>
@@ -268,7 +268,7 @@ const SignUp: React.FC = () => {
                                         className='signup-form-len no-outline wide-input-group'
                                         onChange={handleChange}
                                     />
-                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    <Form.Control.Feedback>good!</Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Check
@@ -279,6 +279,8 @@ const SignUp: React.FC = () => {
                                         className='no-outline'
                                     />
                                 </Form.Group>
+                                
+                                <div className='already' onClick={()=>{navigate('/signin')}}>이미 계정이 있으신가요?</div>
                                 <div style={{ display: 'flex', justifyContent: 'end' }}>
                                     <Button 
                                         type="submit"

@@ -86,5 +86,11 @@
 
 .card-item-title {
     font-size: x-large;
+}
 
+.already {
+    color: #918b8b;
+    margin-top: -10px;
+    font-size: small;
+    cursor: pointer;
 }

@@ -75,7 +75,7 @@ const SignIn: React.FC = () => {
                                         value={email}
                                         onChange={handleEmailChange}
                                     />
-                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    <Form.Control.Feedback>good!</Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group controlId="password">
                                     <Form.Label>비밀번호</Form.Label>
@@ -90,7 +90,7 @@ const SignIn: React.FC = () => {
                                         /> 
                                         <FontAwesomeIcon icon={faEye} style={{color: "#bdbdbd", marginLeft: '10px', marginBottom: '10px', cursor: 'pointer'}} />                                    
                                     </div>
-                                    <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+                                    <Form.Control.Feedback>good!</Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Check
@@ -100,6 +100,7 @@ const SignIn: React.FC = () => {
                                         feedbackType="invalid"
                                     />
                                 </Form.Group>
+                                <div className='already' onClick={()=>{navigate('/signup')}}>아직 계정이 없으신가요?</div>
                                 <div style={{ display: 'flex', justifyContent: 'end' }}>
                                     <Button type="submit"  className='signup-btn'>로그인</Button>
                                 </div>
