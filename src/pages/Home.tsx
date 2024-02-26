@@ -41,7 +41,9 @@ const Home: React.FC<HomeProps> = ({cardItem}) => {
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                                     <ListGroup className="list-group-flush card-item-title">{item.title}</ListGroup>
                                 </div>
-                                <Card.Img variant="top" src={item.image} />
+                                <div className='card-img-container'>
+                                    <Card.Img variant="top" src={item.image} className='card-item-img' />
+                                </div>
                                 <Card.Body>
                                     <Card.Title className='card-item-title'  style={{ fontSize: 'x-large' }}>{item.content}</Card.Title>
                                     <Card.Text>
