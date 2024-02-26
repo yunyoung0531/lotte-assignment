@@ -13,7 +13,6 @@ let data = [
     },
     {
         id: 2,
-        // image: 'https://cdn.imweb.me/upload/S202309062819e6ba28008/7d2466a6dadcb.jpg',
         image: ' https://webimage.ldcc.co.kr/upload/conf/upload/2021/05/07/202105070d9d184890a64d5.png',
         title: '영양제 상품 카드',
         content: '실버세대 위한 두뇌건강식품 ‘황작 두뇌인지원’'
