@@ -94,3 +94,12 @@
     font-size: small;
     cursor: pointer;
 }
+
+.signin-btn {
+    color: rgb(255, 255, 255) !important;
+    border-color: #da291c !important;
+    background-color: #da291c !important;
+    border-radius: 3px !important;
+    /* align-items: flex-end; */
+    /* position: fixed; */
+}

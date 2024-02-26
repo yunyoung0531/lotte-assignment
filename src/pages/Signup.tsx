@@ -180,6 +180,7 @@ const SignUp: React.FC = () => {
                     <Col md={6}>
                         <div className='signup-form'>
                             <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                            <h2>회원가입</h2>
                                 <Form.Group controlId="username" >
                                     <Form.Label>이름</Form.Label>
                                     <Form.Control   
@@ -279,7 +280,6 @@ const SignUp: React.FC = () => {
                                         className='no-outline'
                                     />
                                 </Form.Group>
-                                
                                 <div className='already' onClick={()=>{navigate('/signin')}}>이미 계정이 있으신가요?</div>
                                 <div style={{ display: 'flex', justifyContent: 'end' }}>
                                     <Button 

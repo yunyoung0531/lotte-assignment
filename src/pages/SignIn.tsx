@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 interface UserData {
@@ -16,6 +16,7 @@ const SignIn: React.FC = () => {
     const [validated, setValidated] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false); 
 
     const createMockJwtToken = (userData: UserData) => {
         const header = btoa(unescape(encodeURIComponent(JSON.stringify({ alg: "HS256", typ: "JWT" }))));
@@ -55,7 +56,10 @@ const SignIn: React.FC = () => {
         setPassword(event.target.value);
     };
     
-    
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
@@ -82,13 +86,19 @@ const SignIn: React.FC = () => {
                                     <div style={{ display: 'flex', alignItems: 'center' }}>
                                         <Form.Control
                                             required
-                                            type="password"
+                                            type={showPassword ? "tesx" : "password"}
                                             placeholder='비밀번호을 입력해주세요.'
                                             className='signup-form-len no-outline wide-input-group'
                                             value={password}
                                             onChange={handlePasswordChange} 
                                         /> 
-                                        <FontAwesomeIcon icon={faEye} style={{color: "#bdbdbd", marginLeft: '10px', marginBottom: '10px', cursor: 'pointer'}} />                                    
+                                        {/* <div style={{ display: 'flex', marginLeft: '10px', marginBottom: '10px', }}> */}
+                                        <FontAwesomeIcon 
+                                            icon={showPassword ? faEyeSlash : faEye}
+                                            style={{ color: "#bdbdbd", cursor: 'pointer', marginLeft: '10px' }}
+                                            onClick={togglePasswordVisibility}  size='sm'
+                                        />                                    
+                                        {/* </div>     */}
                                     </div>
                                     <Form.Control.Feedback>good!</Form.Control.Feedback>
                                 </Form.Group>
@@ -101,8 +111,8 @@ const SignIn: React.FC = () => {
                                     />
                                 </Form.Group>
                                 <div className='already' onClick={()=>{navigate('/signup')}}>아직 계정이 없으신가요?</div>
-                                <div style={{ display: 'flex', justifyContent: 'end' }}>
-                                    <Button type="submit"  className='signup-btn'>로그인</Button>
+                                <div style={{ display: 'flex', justifyContent: 'end', marginRight: '25px' }}>
+                                    <Button type="submit" className='signin-btn'>로그인</Button>
                                 </div>
                             </Form>
                         </div>
