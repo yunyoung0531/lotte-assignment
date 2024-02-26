@@ -277,7 +277,7 @@ const SignUp: React.FC = () => {
                                         label="Agree to terms and conditions"
                                         feedback="You must agree before submitting."
                                         feedbackType="invalid"
-                                        className='no-outline'
+                                        className='no-outline custom-checkbox'
                                     />
                                 </Form.Group>
                                 <div className='already' onClick={()=>{navigate('/signin')}}>이미 계정이 있으신가요?</div>

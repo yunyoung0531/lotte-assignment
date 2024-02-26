@@ -108,6 +108,7 @@ const SignIn: React.FC = () => {
                                         label="Agree to terms and conditions"
                                         feedback="You must agree before submitting."
                                         feedbackType="invalid"
+                                        className="custom-checkbox" 
                                     />
                                 </Form.Group>
                                 <div className='already' onClick={()=>{navigate('/signup')}}>아직 계정이 없으신가요?</div>

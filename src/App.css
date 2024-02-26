@@ -103,3 +103,17 @@
     /* align-items: flex-end; */
     /* position: fixed; */
 }
+
+.custom-checkbox .form-check-input:checked {
+    background-color: #da291c !important;
+    border-color: #da291c !important;
+}
+.custom-checkbox .form-check-input:checked ~ .custom-control-label::before {
+    border-color: #da291c !important;
+}
+
+.custom-checkbox .form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem #e1e1e1;
+    /* box-shadow: none; */
+    border: #da291c !important;
+}
