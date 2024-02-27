@@ -32,14 +32,16 @@ const Home: React.FC<HomeProps> = ({cardItem}) => {
 
     return (
         <>
-            <div className='healthcare-header'>
-                <h2 >{userName}님 취향 맞춤 건강 정보</h2>
+            <div className='header'>
+                <h2>{userName}님 취향 맞춤 건강 정보</h2>
+                <img src='https://www.lotte.co.kr/common/w/images/main/img_footer_logo.png'/>
+                <a href='https://www.lottehealthcare.com/'>about LOTTEHEALTHCARE</a>
             </div>
             <div className="d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
                 <div className='row w-100 justify-content-center'> 
                     {displayItem.map((item, index) => (
-                        <div className="col-md-6 d-flex justify-content-center card-item-display" key={index}>
-                            <Card style={{ width: '55%' }}>
+                        <div className="col-md-3 d-flex justify-content-center card-item-display" key={index}>
+                            <Card style={{ width: '18rem', height: '75%' }}> 
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                                     <ListGroup className="list-group-flush card-item-title">{item.title}</ListGroup>
                                 </div>
@@ -47,10 +49,9 @@ const Home: React.FC<HomeProps> = ({cardItem}) => {
                                     <Card.Img variant="top" src={item.image} className='card-item-img' />
                                 </div>
                                 <Card.Body>
-                                    <Card.Title className='card-item-title'  style={{ fontSize: 'x-large' }}>{item.content}</Card.Title>
+                                    <Card.Title className='card-item-title'  style={{ fontSize: 'large' }}>{item.content}</Card.Title>
                                     <Card.Text>
-                                        Some quick example text to build on the card title and make up the
-                                        bulk of the card's content.
+                                        
                                     </Card.Text>
                                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                                     <Button className='signup-btn'>찜하기</Button>
