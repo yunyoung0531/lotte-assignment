@@ -31,6 +31,7 @@
 ## 🌳 프로젝트 구조 설명
 
 ```
+lotte-assignment
 ┣ README.md
 ┣ .gitignore
 ┣ tsconfig.json
@@ -38,24 +39,16 @@
 ┣ package.json
 ┃
 ┣ public
-┃ ┣ index.html
-┃ ┣ manifest.json
-┃ ┗ robots.txt 
+┃ ┗ index.html
 ┗ src
- ┣ pages
- ┃ ┣ Home.tsx
- ┃ ┣ SignIn.tsx
- ┃ ┗ SignUp.tsx
- ┣ App.css
- ┣ App.test.tsx
- ┣ App.tsx
- ┣ cardlist.ts
- ┣ index.css
- ┣ index.tsx
- ┣ ProtectedRoute.tsx
- ┣ react-app-env.d.ts
- ┣ reportWebVitals.ts
- ┗ setupTests.ts
+ ┣ pages // 컴포넌트들을 모아놓은 폴더
+ ┃ ┣ Home.tsx // 로그인 성공시 리다이렉트되는 홈 화면
+ ┃ ┣ SignIn.tsx // 로그인
+ ┃ ┗ SignUp.tsx // 회원가입
+ ┣ App.css 
+ ┣ App.tsx 
+ ┣ cardlist.ts // 홈 화면에서 보여줄 카드 목록
+ ┗ ProtectedRoute.tsx // 리다이렉트
 ```
 
 ## 🌟 각 기능 설명
@@ -113,7 +106,17 @@
   이러한 이유로, 리액트와 타입스크립트는 사용자 경험과 개발 효율성을 동시에 높이면서 롯데헬스케어 과제 요구 사항을 충족시키는 최적의 기술 스택입니다.
 
 
+*react-bootstrap*
+
+- React 애플리케이션에 Bootstrap 컴포넌트를 쉽게 통합할 수 있게 해주어, 반응형 웹 디자인과 일관된 UI를 빠르게 구현할 수 있도록 돕습니다.
+
+*fontawesome*
+
+- Font Awesome은 수천 개의 벡터 아이콘과 사회적 아이콘을 제공하여, 웹 사이트나 애플리케이션의 시각적 표현을 풍부하게 합니다. 이 라이브러리를 사용함으로써 개발자는 아이콘을 쉽게 웹 페이지에 삽입할 수 있고, CSS를 통해 아이콘의 크기, 색상, 그림자 등을 자유롭게 조정할 수 있습니다. 이는 사용자 인터페이스의 직관성과 사용자 경험을 개선하는 데 크게 기여합니다.
+
 
 
 ## 🎨 사이트 주소
 
+
+https://lotte-healthcare-cyy.netlify.app/
