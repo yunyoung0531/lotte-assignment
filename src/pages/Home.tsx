@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { ListGroup, Card, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 
 interface Card {
     id: number;
@@ -37,7 +39,7 @@ const Home: React.FC<HomeProps> = ({cardItem}) => {
                 <div className='row w-100 justify-content-center'> 
                     {displayItem.map((item, index) => (
                         <div className="col-md-6 d-flex justify-content-center card-item-display" key={index}>
-                            <Card style={{ width: '60%' }}>
+                            <Card style={{ width: '55%' }}>
                                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                                     <ListGroup className="list-group-flush card-item-title">{item.title}</ListGroup>
                                 </div>
@@ -59,7 +61,21 @@ const Home: React.FC<HomeProps> = ({cardItem}) => {
                     ))}
                 </div>
             </div>
-
+            <div className='footer'>
+                <div className='footer-container'>
+                    <a href="https://www.instagram.com/cazzle_official?igsh=MnZ1aTlqamFrYTY3" target="_blank" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-start', width: '100%' }}>
+                        <div className='insta-icon'>
+                            <FontAwesomeIcon icon={faInstagram} size='xl' />
+                        </div>
+                    </a>
+                    <div style={{ marginTop: '-40px' }}>
+                        <p style={{ fontWeight: 'bold' }}>롯데헬스케어 주식회사</p>
+                        <p className='footer-content'>주소: 서울특별시 송파구 올림픽로 300 롯데월드타워 27층</p>
+                        <p className='footer-content'>대표이사: 우웅조  |  전화: 02-3431-8105</p>
+                        <p className='footer-content'>메일: lottehealthcare@lotte.net</p>
+                    </div>
+                </div>
+            </div>
         </>
     );
 }
