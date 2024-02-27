@@ -1,46 +1,114 @@
-# Getting Started with Create React App
+# lotte-healthcare 사전 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
 
-## Available Scripts
+## 📇 지원자 이름
 
-In the project directory, you can run:
 
-### `npm start`
+**최윤영**
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🔥 프로젝트 실행방법
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**프로젝트 디렉토리로 이동합니다**
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- (예) C:\Users\lovec\Desktop\lotte-assignment>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**npm을 사용하여 필요한 모든 의존성을 설치합니다 (Nodejs 설치 확인 필요합니다!)**
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- npm install
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**프로젝트를 시작하려면 다음 명령을 실행하세요**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  
+- npm start
+  
 
-## Learn More
+## 🪜 프로젝트 구조 설명
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+┣ README.md
+┣ .gitignore
+┣ tsconfig.json
+┣ package-lock.json
+┣ package.json
+┃
+┣ public
+┃ ┣ index.html
+┃ ┣ manifest.json
+┃ ┗ robots.txt 
+┗ src
+ ┣ pages
+ ┃ ┣ Home.tsx
+ ┃ ┣ SignIn.tsx
+ ┃ ┗ SignUp.tsx
+ ┣ App.css
+ ┣ App.test.tsx
+ ┣ App.tsx
+ ┣ cardlist.ts
+ ┣ index.css
+ ┣ index.tsx
+ ┣ ProtectedRoute.tsx
+ ┣ react-app-env.d.ts
+ ┣ reportWebVitals.ts
+ ┗ setupTests.ts
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🌟 각 기능 설명
+
+**회원가입 기능**
+- 이름 : 필수 입력(문자만 허용)
+- 이메일 형식 검사
+- 비밀번호 : 8자 이상의 영어 대문자&소문자 + 숫자 + 특수문자
+
+  -> 만약 유효성 통과하지 못했다면 그 이유를 알려줌
+  
+  -> 만약 유효성 통과했다면 회원가입 버튼 활성화
+  
+  -> 회원가입 후 로그인페이지로 리다이렉트
+  
+**로그인 기능**
+- 로그인 페이지에서 로그인을 진행하고 정상적으로 완료되었을 때 홈 경로로 (/) 리다이렉트
+- 로그인 여부에 따른 리다이렉트 처리
+  
+  -> 로컬스토리지에 토큰이 있는 상태로 회원가입 or 로그인 페이지에 접속한다면 (/) home으로 리다이렉트
+  
+  -> 로컬스토리지에 토큰이 없는 상태로 (/) home에 접속한다면 로그인 페이지로 리다이렉트
+ 
+
+**홈 화면**
+- 로그인이 정상적으로 되었을때 접근이 가능한 홈 화면
+- 사용자 경험을 고려한 네비게이션바
+
+
+## 📖 해당 라이브러리 및 프레임워크를 사용한 이유 설명
+
+- React, TypeScript (기술 스택)
+
+-------------------------------------------
+
+
+*React*
+사용자 인터랙션 중요성: 로그인 및 회원가입과 같은 중요 인터랙션에 대해 실시간 반응성을 제공합니다.
+
+상태 관리 용이성: 본 과제에서는 API 연동이 없지만 추후 프로젝트가 커지게 된다면 로그인 상태, 사용자 입력 데이터 등을 관리해야 하는 복잡성이 있습니다. React와 함께 Redux나 Context API 등 상태 관리 기능을 통해 데이터 흐름 관리 용이합니다.
+컴포넌트 재사용성: UI 컴포넌트 재사용을 통한 개발 시간 단축 및 코드 일관성 유지할 수 있습니다.
+
+*TypeScript*
+데이터 안정성: 폼 데이터와 (추후) API 통신 데이터의 타입 정의를 통한 오류 감소 및 안정성 향상됩니다.
+개발 효율성: 인터페이스, 제네릭 등의 기능을 통한 빠르고 효율적인 개발 지원합니다.
+
+*롯데헬스케어 과제에서 리액트랑 타입스크립트를 사용한 이유*
+헬스케어 분야에서는 사용자 데이터의 보안과 프라이버시가 매우 중요합니다. 롯데헬스케어는 시스템이 지속적으로 성장하고 변화할 가능성이 높습니다. 대규모 시스템의 지속적 성장 및 변화에 대응하는 확장성 및 유지보수성 보장하는 데 큰 장점을 가집니다.
+
+이러한 이유로, 리액트와 타입스크립트는 사용자 경험과 개발 효율성을 동시에 높이면서 롯데헬스케어 과제 요구 사항을 충족시키는 최적의 기술 스택입니다.
+
+
+
+
+## 🎨 사이트 주소
+
