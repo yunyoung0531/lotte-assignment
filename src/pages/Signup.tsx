@@ -77,62 +77,42 @@ const SignUp: React.FC = () => {
         if (id === 'username') {
             validateUsername(value);
         }
-    
         if (id === 'password' || id === 'confirmPassword') {
             validatePassword(newFormData.password);
             const passwordsMatch = newFormData.password === newFormData.confirmPassword;
             setIsButtonEnabled(passwordsMatch && passwordValidationMessage === "안전한 비밀번호입니다." && usernameValidationMessage === "");
         }
-    
         if (id === 'email') {
             const completeEmail = emailDomain ? `${value}@${emailDomain}` : value;
             newFormData = { ...newFormData, [id]: completeEmail };
         }
-    
         setFormData(newFormData);
     };
     
-    
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const newEmailLocalPart = event.target.value;
-        const newCompleteEmail = customDomain ? newEmailLocalPart : `${newEmailLocalPart}@${emailDomain}`;
-        setFormData(prevState => ({
-            ...prevState,
-            email: newCompleteEmail
-        }));
+        const emailLocalPart = event.target.value;
+        const newCompleteEmail = customDomain ? `${emailLocalPart}@${emailDomain}` : `${emailLocalPart}@${emailDomain}`;
+        setFormData({ ...formData, email: newCompleteEmail });
     };
-    
+        
     const handleDomainChange = (event: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>): void => {
-        const value = event.target.value;
-        const isCustomDomain = value === 'custom';
-        setCustomDomain(isCustomDomain);
+        const domain = event.target.value;
+        setCustomDomain(domain === 'custom');
+        setEmailDomain(domain);
     
-        if (!isCustomDomain) {
-            setEmailDomain(value);
-            const newCompleteEmail = `${formData.email.split('@')[0]}@${value}`;
-            setFormData(prevState => ({
-                ...prevState,
-                email: newCompleteEmail
-            }));
-        } else {
-            setEmailDomain('');
-            setFormData(prevState => ({
-                ...prevState,
-                email: formData.email.split('@')[0]
-            }));
-        }
+        const emailLocalPart = formData.email.split('@')[0];
+        const newCompleteEmail = domain === 'custom' ? emailLocalPart : `${emailLocalPart}@${domain}`;
+        setFormData({ ...formData, email: newCompleteEmail });
     };
     
     const handleCustomDomainChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-        const newEmailDomain = event.target.value;
-        setEmailDomain(newEmailDomain);
-        const newCompleteEmail = `${formData.email.split('@')[0]}@${newEmailDomain}`;
-        setFormData(prevState => ({
-            ...prevState,
-            email: newCompleteEmail
-        }));
-    };
+        const newCustomDomain = event.target.value;
+        setEmailDomain(newCustomDomain); // 이 부분이 사용자가 입력한 새 도메인으로 상태를 업데이트합니다.
     
+        const emailLocalPart = formData.email.split('@')[0];
+        setFormData({ ...formData, email: `${emailLocalPart}@${newCustomDomain}` });
+    };
+            
     const validateUsername = (username: string) => {
         const regex = /^[a-zA-Z가-힣]+$/; 
         if (!regex.test(username)) {
