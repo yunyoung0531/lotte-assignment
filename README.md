@@ -43,12 +43,13 @@ lotte-assignment
 ┗ src
  ┣ pages // 컴포넌트들을 모아놓은 폴더
  ┃ ┣ Home.tsx // 로그인 성공시 리다이렉트되는 홈 화면
- ┃ ┣ SignIn.tsx // 로그인
- ┃ ┗ SignUp.tsx // 회원가입
+ ┃ ┣ SignIn.tsx // 로그인 페이지
+ ┃ ┗ SignUp.tsx // 회원가입 페이지
  ┣ App.css 
  ┣ App.tsx 
  ┣ cardlist.ts // 홈 화면에서 보여줄 카드 목록
  ┗ ProtectedRoute.tsx // 리다이렉트
+ 
 ```
 
 ## 🌟 각 기능 설명
@@ -76,6 +77,7 @@ lotte-assignment
 **홈 화면**
 - 로그인이 정상적으로 되었을때 접근이 가능한 홈 화면
 - 사용자 경험을 고려한 네비게이션바
+- 사용자 친화적인 UI/UX
 
 
 ## 📖 해당 라이브러리 및 프레임워크를 사용한 이유 설명
@@ -100,23 +102,42 @@ lotte-assignment
 *롯데헬스케어 과제에서 React와 TypeScript를 사용한 이유*
 
 
-- 헬스케어 분야에서는 사용자 데이터의 보안과 프라이버시가 매우 중요합니다. 롯데헬스케어는 시스템이 지속적으로 성장하고 변화할 가능성이 높습니다. 대규모 시스템의 지속적 성장 및 변화에 대응하는 확장성 및 유지보수성 보장하는 데 큰 장점을 가집니다.
+- 헬스케어 분야에서는 사용자 데이터의 보안과 프라이버시가 매우 중요합니다. 또, 롯데헬스케어는 시스템이 지속적으로 성장하고 변화할 가능성이 높습니다. 대규모 시스템의 지속적 성장 및 변화에 대응하는 확장성 및 유지보수성 에 있어서 장점을 가집니다.
 
   
-  이러한 이유로, 리액트와 타입스크립트는 사용자 경험과 개발 효율성을 동시에 높이면서 롯데헬스케어 과제 요구 사항을 충족시키는 최적의 기술 스택입니다.
-
+  이러한 이유로, 리액트와 타입스크립트는 사용자 경험과 개발 효율성을 동시에 높이면서 롯데헬스케어 과제 요구 사항을 충족시키는 최적의 기술 스택이라고 생각합니다.
 
 *react-bootstrap*
 
-- React 애플리케이션에 Bootstrap 컴포넌트를 쉽게 통합할 수 있게 해주어, 반응형 웹 디자인과 일관된 UI를 빠르게 구현할 수 있도록 돕습니다.
+- 반응형 웹 디자인과 일관된 UI를 빠르게 구현할 수 있게 해주는 라이브러리입니다.
 
 *fontawesome*
 
-- Font Awesome은 수천 개의 벡터 아이콘과 사회적 아이콘을 제공하여, 웹 사이트나 애플리케이션의 시각적 표현을 풍부하게 합니다. 이 라이브러리를 사용함으로써 개발자는 아이콘을 쉽게 웹 페이지에 삽입할 수 있고, CSS를 통해 아이콘의 크기, 색상, 그림자 등을 자유롭게 조정할 수 있습니다. 이는 사용자 인터페이스의 직관성과 사용자 경험을 개선하는 데 크게 기여합니다.
+- Font Awesome은 수천 개의 벡터 아이콘과 사회적 아이콘을 제공하여, 웹 사이트나 애플리케이션의 시각적 표현을 풍부하게 합니다. fontawesome으로 아이콘을 쉽게 웹 페이지에 삽입할 수 있고, CSS를 통해 아이콘의 크기, 색상, 그림자 등을 자유롭게 조정할 수 있습니다. 사용자 인터페이스의 직관성과 사용자 경험을 개선하는데 도움을 줍니다.
 
 
 
-## 🎨 사이트 주소
+
+## 🎨 구현 화면
 
 
-https://lotte-healthcare-cyy.netlify.app/
+<table>
+  <tr>
+    <td><img src="https://github.com/yunyoung0531/readme-for-lotte-assignment/assets/68066598/ed808c20-0746-4d4d-8843-d50409eeb3fb"  width="490" height="180"/></td>
+    <td><img src="https://github.com/yunyoung0531/readme-for-lotte-assignment/assets/68066598/5a009ce1-d302-415c-a7d1-49b229cb575b"  width="490" height="180"/></td>
+  </tr>
+    <td align="center"><b>로그인</b></td>
+    <td align="center"><b>회원가입</b></td>
+</table>
+
+
+<table>
+  <tr>
+    <td><img src="https://github.com/yunyoung0531/readme-for-lotte-assignment/assets/68066598/e657db94-c863-4785-ae16-701acc7cb764"  width="490" height="180"/></td>
+    <td><img src="https://github.com/yunyoung0531/readme-for-lotte-assignment/assets/68066598/4847123f-30cf-490e-955e-85a615ab6510"  width="490" height="180"/></td>
+  </tr>
+    <td align="center"><b>홈 화면1</b></td>
+    <td align="center"><b>홈 화면2</b></td>
+</table>
+
+
