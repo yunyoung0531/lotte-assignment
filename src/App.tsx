@@ -71,8 +71,10 @@ const App: React.FC = () => {
       
       <Routes>
         <Route path='/' element={<><ProtectedRoute><Home cardItem={cardItem}/></ProtectedRoute></>}/>
-        <Route path='/signin' element={<><SignIn /></>}/>
+        <Route path='/signin' element={<><SignIn/></>}/>
         <Route path='/signup' element={<><SignUp/></>}/>
+        {/* <Route path='/signin' element={<><ProtectedRoute><SignIn/></ProtectedRoute></>}/>
+        <Route path='/signup' element={<><ProtectedRoute><SignUp/></ProtectedRoute></>}/> */}
         <Route path='*' element={<>찾을 수 없는 페이지입니다.</>}/>
       </Routes>
     </div>

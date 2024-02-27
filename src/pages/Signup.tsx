@@ -9,9 +9,21 @@ interface UserData {
     password: string;
     confirmPassword: string;
 }
+const useAuth = () => {
+    const user = localStorage.getItem('jwtToken');
+    return user != null;
+};
 
 const SignUp: React.FC = () => {
+    const auth = useAuth();
     let navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (auth) {
+            navigate('/');
+        }
+    }, [auth, navigate]);
+    
     const [validated, setValidated] = useState(false);
 
     const [customDomain, setCustomDomain] = useState(false); 

@@ -11,8 +11,21 @@ interface UserData {
     password: string;
 }
 
+const useAuth = () => {
+    const user = localStorage.getItem('jwtToken');
+    return user != null;
+};
+
 const SignIn: React.FC = () => {
+    const auth = useAuth();
     let navigate = useNavigate();
+
+    React.useEffect(() => {
+        if (auth) {
+            navigate('/');
+        }
+    }, [auth, navigate]);
+    
     const [validated, setValidated] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -37,7 +50,7 @@ const SignIn: React.FC = () => {
             console.log('로그인 성공');
             const mockToken = createMockJwtToken(userFound);
             localStorage.setItem('jwtToken', mockToken);
-            localStorage.setItem('userName', userFound.username); //사용자 이름 저장 -> 홈에서 보여주기 위함   
+            localStorage.setItem('userName', userFound.username); 
             window.dispatchEvent(new Event('storage'));
 
             navigate('/');
@@ -92,13 +105,11 @@ const SignIn: React.FC = () => {
                                             value={password}
                                             onChange={handlePasswordChange} 
                                         /> 
-                                        {/* <div style={{ display: 'flex', marginLeft: '10px', marginBottom: '10px', }}> */}
                                         <FontAwesomeIcon 
                                             icon={showPassword ? faEyeSlash : faEye}
                                             style={{ color: "#bdbdbd", cursor: 'pointer', marginLeft: '10px' }}
                                             onClick={togglePasswordVisibility}  size='sm'
                                         />                                    
-                                        {/* </div>     */}
                                     </div>
                                     <Form.Control.Feedback>good!</Form.Control.Feedback>
                                 </Form.Group>
