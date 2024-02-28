@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
-import SignUp from './pages/SignUp';
+import SignUp from './pages/Signup';
 import SignIn from './pages/SignIn';
 import Home from './pages/Home';
 import { Container, Nav, Navbar } from 'react-bootstrap';
@@ -73,8 +73,6 @@ const App: React.FC = () => {
         <Route path='/' element={<><ProtectedRoute><Home cardItem={cardItem}/></ProtectedRoute></>}/>
         <Route path='/signin' element={<><SignIn/></>}/>
         <Route path='/signup' element={<><SignUp/></>}/>
-        {/* <Route path='/signin' element={<><ProtectedRoute><SignIn/></ProtectedRoute></>}/>
-        <Route path='/signup' element={<><ProtectedRoute><SignUp/></ProtectedRoute></>}/> */}
         <Route path='*' element={<>찾을 수 없는 페이지입니다.</>}/>
       </Routes>
     </div>

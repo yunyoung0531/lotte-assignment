@@ -14,7 +14,7 @@ const useAuth = () => {
     return user != null;
 };
 
-const SignUp: React.FC = () => {
+const Signup: React.FC = () => {
     const auth = useAuth();
     let navigate = useNavigate();
 
@@ -289,4 +289,4 @@ const SignUp: React.FC = () => {
     );
 }
 
-export default SignUp;
+export default Signup;
